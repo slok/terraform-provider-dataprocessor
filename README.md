@@ -6,7 +6,6 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/slok/terraform-provider-dataprocessor)](https://github.com/slok/terraform-provider-dataprocessor/releases/latest)
 [![Terraform regsitry](https://img.shields.io/badge/Terraform-Registry-color=green?logo=Terraform&style=flat&color=5C4EE5&logoColor=white)](https://registry.terraform.io/providers/slok/dataprocessor/latest/docs)
 
-
 Avoid ugly terraform logic and code to transform data. This Terraform provider helps you with the data processing in a clean and easy way by using tools like [JQ], [YQ] and Go plugins.
 
 ## Features
@@ -18,7 +17,7 @@ Avoid ugly terraform logic and code to transform data. This Terraform provider h
 
 - Generate, filter, mutate... JSON data.
 - Retrieve JSON data from APIs, process and use it on other Terraform providers resources.
-- Remove ugly HCL code in favor of a more clean and powerof dat processing ways.
+- Remove ugly HCL code in favor of a more clean and powerful data processing approach.
 
 ## Requirements
 
