@@ -35,8 +35,7 @@ structures... without messing in unreadable HCL code.
 
 ## Terraform cloud
 
-The provider will detect that its executing in terraform cloud and will use the embedded CLIs, so the
-provider can be executed inside Terraform cloud workers.`,
+The provider is portable and doesn't depend on any binary, so its compatible with terraform cloud workers.`,
 		Attributes: map[string]tfsdk.Attribute{
 			"jq_cli_path": {
 				Type:        types.StringType,

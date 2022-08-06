@@ -5,5 +5,10 @@ import (
 )
 
 type JQ struct {
-	ID types.String `tfsdk:"id"`
+	Query     types.String            `tfsdk:"query"`
+	InputData types.String            `tfsdk:"input_data"`
+	Vars      map[string]types.String `tfsdk:"vars"`
+	Pretty    types.Bool              `tfsdk:"pretty"`
+	Result    types.String            `tfsdk:"result"`
+	ID        types.String            `tfsdk:"id"`
 }
