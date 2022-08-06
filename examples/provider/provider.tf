@@ -14,6 +14,6 @@ data "dataprocessor_jq" "test" {
   query = "[.results[] | {name, age}]"
 }
 
-output "test_jq" {
-  test = jsonencode(dataprocessor_jq.test.result)
+output "test" {
+  value = jsondecode(data.dataprocessor_jq.test.result)
 }
