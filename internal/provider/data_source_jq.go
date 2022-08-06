@@ -42,7 +42,6 @@ func (d dataSourceJQ) Read(ctx context.Context, req tfsdk.ReadDataSourceRequest,
 	}
 
 	// Execute JQ.
-
 	jq := JQ{ID: types.String{Value: "todo"}}
 
 	diags := resp.State.Set(ctx, jq)
