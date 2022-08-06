@@ -3,12 +3,12 @@
 page_title: "dataprocessor_jq Data Source - terraform-provider-dataprocessor"
 subcategory: ""
 description: |-
-  Executes a JQ query providing the result.
+  Executes a JQ expression providing the result.
 ---
 
 # dataprocessor_jq (Data Source)
 
-Executes a JQ query providing the result.
+Executes a JQ expression providing the result.
 
 ## Example Usage
 
@@ -19,11 +19,11 @@ data "dataprocessor_jq" "test" {
     {"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}
   EOT
 
-  query = "[.results[] | {name, age}]"
+  expression = "[.results[] | {name, age}]"
 }
 
 output "test" {
-  value = jsondecode(data.dataprocessor_jq.test.result)
+  value = yamldecode(data.dataprocessor_jq.test.result)
 }
 ```
 
@@ -32,8 +32,8 @@ output "test" {
 
 ### Required
 
+- `expression` (String) The JQ expression to be executed.
 - `input_data` (String) The input JSON data that will be processed with JQ.
-- `query` (String) The JQ query to be executed.
 
 ### Optional
 
@@ -42,7 +42,7 @@ output "test" {
 
 ### Read-Only
 
-- `id` (String) No use, can be ignored.
+- `id` (String) Not used, can be ignored.
 - `result` (String) JQ execution result.
 
 

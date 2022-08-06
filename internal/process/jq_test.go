@@ -12,48 +12,48 @@ import (
 
 func TestJQPorcessorProcess(t *testing.T) {
 	tests := map[string]struct {
-		pretty    bool
-		jqQuery   string
-		inputData string
-		metadata  map[string]string
-		expResult string
-		expErr    bool
+		pretty       bool
+		jqExpression string
+		inputData    string
+		metadata     map[string]string
+		expResult    string
+		expErr       bool
 	}{
 		"Empty JQ map should return empty result.": {
-			jqQuery:   ".",
-			inputData: "{}",
-			expResult: "{}",
+			jqExpression: ".",
+			inputData:    "{}",
+			expResult:    "{}",
 		},
 
 		"Empty JQ list should return empty result.": {
-			jqQuery:   ".",
-			inputData: "[]",
-			expResult: "[]",
+			jqExpression: ".",
+			inputData:    "[]",
+			expResult:    "[]",
 		},
 
-		"A JQ query with variables should be executed correctly.": {
-			jqQuery:   `. |= . + {"x": $x, "y": $y}`,
-			inputData: `{"a": "b"}`,
-			metadata:  map[string]string{"x": "something", "y": "otherthing"},
-			expResult: `{"a":"b","x":"something","y":"otherthing"}`,
+		"A JQ expression with variables should be executed correctly.": {
+			jqExpression: `. |= . + {"x": $x, "y": $y}`,
+			inputData:    `{"a": "b"}`,
+			metadata:     map[string]string{"x": "something", "y": "otherthing"},
+			expResult:    `{"a":"b","x":"something","y":"otherthing"}`,
 		},
 
 		"An invalid input should fail.": {
-			jqQuery:   `.`,
-			inputData: `{"a" b"}`,
-			expErr:    true,
+			jqExpression: `.`,
+			inputData:    `{"a" b"}`,
+			expErr:       true,
 		},
 
 		"Simple JQ should execute correctly.": {
-			jqQuery:   `[.results[] | {name, age}]`,
-			inputData: `{"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}`,
-			expResult: `[{"age":43,"name":"John"},{"age":10,"name":"Joe"}]`,
+			jqExpression: `[.results[] | {name, age}]`,
+			inputData:    `{"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}`,
+			expResult:    `[{"age":43,"name":"John"},{"age":10,"name":"Joe"}]`,
 		},
 
 		"Pretty result JQ should execute correctly and in a pretty format.": {
-			pretty:    true,
-			jqQuery:   `[.results[] | {name, age}]`,
-			inputData: `{"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}`,
+			pretty:       true,
+			jqExpression: `[.results[] | {name, age}]`,
+			inputData:    `{"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}`,
 			expResult: `[
 	{
 		"age": 43,
@@ -67,7 +67,7 @@ func TestJQPorcessorProcess(t *testing.T) {
 		},
 
 		"Complex JQ should execute correctly.": {
-			jqQuery: `.[] |= . + {"new_perm": .perm, "perm": .perm | keys }`,
+			jqExpression: `.[] |= . + {"new_perm": .perm, "perm": .perm | keys }`,
 			inputData: `
 			{
 				"a": {
@@ -89,7 +89,7 @@ func TestJQPorcessorProcess(t *testing.T) {
 		},
 
 		"Multi reuslt should execute and return multiple results appended": {
-			jqQuery: `.items[].data | map_values(@base64d)`,
+			jqExpression: `.items[].data | map_values(@base64d)`,
 			inputData: `
 			{
 				"apiVersion": "v1",
@@ -150,7 +150,7 @@ func TestJQPorcessorProcess(t *testing.T) {
 			assert := assert.New(t)
 			require := require.New(t)
 
-			jq, err := process.NewJQProcessor(context.TODO(), test.jqQuery, test.metadata, test.pretty)
+			jq, err := process.NewJQProcessor(context.TODO(), test.jqExpression, test.metadata, test.pretty)
 			require.NoError(err)
 
 			gotRes, err := jq.Process(context.TODO(), test.inputData)

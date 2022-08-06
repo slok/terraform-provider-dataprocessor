@@ -17,11 +17,11 @@ type dataSourceJQType struct{}
 func (d dataSourceJQType) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
 	return tfsdk.Schema{
 		Description: `
-Executes a JQ query providing the result.
+Executes a JQ expression providing the result.
 `,
 		Attributes: map[string]tfsdk.Attribute{
-			"query": {
-				Description: `The JQ query to be executed.`,
+			"expression": {
+				Description: `The JQ expression to be executed.`,
 				Required:    true,
 				Type:        types.StringType,
 				Validators:  []tfsdk.AttributeValidator{attributeutils.NonEmptyString},
@@ -50,7 +50,7 @@ Executes a JQ query providing the result.
 				Type:        types.StringType,
 			},
 			"id": {
-				Description: `No use, can be ignored.`,
+				Description: `Not used, can be ignored.`,
 				Computed:    true,
 				Type:        types.StringType,
 			},
@@ -88,7 +88,7 @@ func (d dataSourceJQ) Read(ctx context.Context, req tfsdk.ReadDataSourceRequest,
 	for k, v := range tfJQ.Vars {
 		vars[k] = v.Value
 	}
-	jq, err := process.NewJQProcessor(ctx, tfJQ.Query.Value, vars, tfJQ.Pretty.Value)
+	jq, err := process.NewJQProcessor(ctx, tfJQ.Expression.Value, vars, tfJQ.Pretty.Value)
 	if err != nil {
 		resp.Diagnostics.AddError("Error creating JQ processor", "Could not create JQ processor, unexpected error: "+err.Error())
 		return

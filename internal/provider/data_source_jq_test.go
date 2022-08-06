@@ -18,27 +18,27 @@ func TestAccDataSourceJQCorrect(t *testing.T) {
 			config: `
 data "dataprocessor_jq" "test" {
 	input_data = ""
-	query = "."
+	expression = "."
 }`,
 			expErr: regexp.MustCompile("Attribute can't be empty"),
 		},
 
-		"Not having JQ query should fail.": {
+		"Not having JQ expression should fail.": {
 			config: `
 data "dataprocessor_jq" "test" {
 	input_data = "{}"
-	query = ""
+	expression = ""
 }`,
 			expErr: regexp.MustCompile("Attribute can't be empty"),
 		},
 
-		"An invalid JQ query should fail..": {
+		"An invalid JQ expression should fail.": {
 			config: `
 data "dataprocessor_jq" "test" {
 	input_data = "{}"
-	query = ".|()ASd-sda?"
+	expression = ".|()ASd-sda?"
 }`,
-			expErr: regexp.MustCompile(`Could not create JQ processor, unexpected error: could not parse JQ query:.*`),
+			expErr: regexp.MustCompile(`Could not create JQ processor, unexpected error: could not parse JQ.*`),
 		},
 
 		"Simple transparent JQ execution should return the input transparently.": {
@@ -47,7 +47,7 @@ data "dataprocessor_jq" "test" {
 	input_data = <<EOT
 		{"a": "b", "x": "y"}
 	EOT
-	query = "."
+	expression = "."
 }`,
 			expResult: `{"a":"b","x":"y"}`,
 		},
@@ -58,7 +58,7 @@ data "dataprocessor_jq" "test" {
 	input_data = <<EOT
 		{"a": "b", "x": "y"}
 	EOT
-	query = "."
+	expression = "."
 	pretty = true
 }`,
 			expResult: `{
@@ -74,7 +74,7 @@ data "dataprocessor_jq" "test" {
 		{"a": "b", "x": "y"}
 	EOT
 	vars = {"extra": "something"}
-	query = ". |= . + {\"extra\": $extra}"
+	expression = ". |= . + {\"extra\": $extra}"
 }`,
 			expResult: `{"a":"b","extra":"something","x":"y"}`,
 		},
