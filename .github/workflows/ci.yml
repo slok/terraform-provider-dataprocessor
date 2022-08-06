@@ -30,7 +30,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     # Execute the checks inside the container instead the VM.
-    container: golangci/golangci-lint:v1.44.2-alpine
+    container: golangci/golangci-lint:v1.48.0-alpine
     steps:
       - uses: actions/checkout@v3
       - run: ./scripts/lint.sh
