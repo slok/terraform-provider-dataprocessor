@@ -6,14 +6,32 @@ terraform {
   }
 }
 
+# JQ example.
 data "dataprocessor_jq" "test" {
   input_data = <<EOT
     {"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}
   EOT
 
-  query = "[.results[] | {name, age}]"
+  expression = "[.results[] | {name, age}]"
 }
 
-output "test" {
-  value = jsondecode(data.dataprocessor_jq.test.result)
+# YQ example.
+data "dataprocessor_yq" "test" {
+  input_data = <<EOT
+values:
+  a: 1
+  b: 2
+  c: 3
+  EOT
+
+  expression = "map_values(.values + 1)"
 }
+
+
+output "test" {
+  value = {
+    "jq_result" = jsondecode(data.dataprocessor_jq.test.result)
+    "yq_result" = yamldecode(data.dataprocessor_yq.test.result)
+  }
+}
+

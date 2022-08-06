@@ -10,10 +10,10 @@ import (
 	"github.com/itchyny/gojq"
 )
 
-func NewJQProcessor(ctx context.Context, jqQuery string, metadata map[string]string, prettyResult bool) (Processor, error) {
-	query, err := gojq.Parse(jqQuery)
+func NewJQProcessor(ctx context.Context, jqExpression string, metadata map[string]string, prettyResult bool) (Processor, error) {
+	expression, err := gojq.Parse(jqExpression)
 	if err != nil {
-		return nil, fmt.Errorf("could not parse JQ query: %w", err)
+		return nil, fmt.Errorf("could not parse JQ expression: %w", err)
 	}
 
 	// Extract variables.
@@ -33,9 +33,9 @@ func NewJQProcessor(ctx context.Context, jqQuery string, metadata map[string]str
 		varVals = append(varVals, metadata[strings.TrimPrefix(k, "$")])
 	}
 
-	jqc, err := gojq.Compile(query, gojq.WithVariables(varKeys))
+	jqc, err := gojq.Compile(expression, gojq.WithVariables(varKeys))
 	if err != nil {
-		return nil, fmt.Errorf("could not compile JQ query: %w", err)
+		return nil, fmt.Errorf("could not compile JQ expression: %w", err)
 	}
 
 	return ProcessorFunc(func(ctx context.Context, inputData string) (result string, err error) {

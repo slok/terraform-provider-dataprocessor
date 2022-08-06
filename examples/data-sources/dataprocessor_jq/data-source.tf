@@ -4,9 +4,9 @@ data "dataprocessor_jq" "test" {
     {"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}
   EOT
 
-  query = "[.results[] | {name, age}]"
+  expression = "[.results[] | {name, age}]"
 }
 
 output "test" {
-  value = jsondecode(data.dataprocessor_jq.test.result)
+  value = yamldecode(data.dataprocessor_jq.test.result)
 }

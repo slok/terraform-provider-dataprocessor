@@ -4,24 +4,29 @@ page_title: "dataprocessor Provider"
 subcategory: ""
 description: |-
   The Data processor provider is used to process data in a simple and clean way inside terraform code
-  to avoid HCL over-engineering and use proper tools for this specific purpose like JQ or Go plugins.
-  Normally this provider will be used to to convert Json processing, raw strings, filtering, create data
-  structures... without messing in unreadable HCL code.
+  to avoid HCL over-engineering
+  Using proper tools like JQ, YQ or small Go plugins to process/transform data will make terraform code cleaner
+  and more maintainable.
+  Normally, this provider will be used to transform, filter or create new data structures in formats like JSON, YAML or event raw strings that
+  can be used afterwards as outputs or other terraform resources, providers and modules.
   Terraform cloud
-  The provider is portable and doesn't depend on any binary, so its compatible with terraform cloud workers.
+  The provider is portable and doesn't depend on any binary, its compatible with terraform cloud workers out of the box.
 ---
 
 # dataprocessor Provider
 
 The Data processor provider is used to process data in a simple and clean way inside terraform code
-to avoid HCL over-engineering and use proper tools for this specific purpose like JQ or Go plugins.
+to avoid HCL over-engineering
 
-Normally this provider will be used to to convert Json processing, raw strings, filtering, create data
-structures... without messing in unreadable HCL code.
+Using proper tools like JQ, YQ or small Go plugins to process/transform data will make terraform code cleaner
+and more maintainable.
+
+Normally, this provider will be used to transform, filter or create new data structures in formats like JSON, YAML or event raw strings that
+can be used afterwards as outputs or other terraform resources, providers and modules.
 
 ## Terraform cloud
 
-The provider is portable and doesn't depend on any binary, so its compatible with terraform cloud workers.
+The provider is portable and doesn't depend on any binary, its compatible with terraform cloud workers out of the box.
 
 ## Example Usage
 
@@ -34,16 +39,33 @@ terraform {
   }
 }
 
+# JQ example.
 data "dataprocessor_jq" "test" {
   input_data = <<EOT
     {"timestamp": 1234567890,"report": "Age Report","results": [{ "name": "John", "age": 43, "city": "TownA" },{ "name": "Joe",  "age": 10, "city": "TownB" }]}
   EOT
 
-  query = "[.results[] | {name, age}]"
+  expression = "[.results[] | {name, age}]"
 }
 
+# YQ example.
+data "dataprocessor_yq" "test" {
+  input_data = <<EOT
+values:
+  a: 1
+  b: 2
+  c: 3
+  EOT
+
+  expression = "map_values(.values + 1)"
+}
+
+
 output "test" {
-  value = jsondecode(data.dataprocessor_jq.test.result)
+  value = {
+    "jq_result" = jsondecode(data.dataprocessor_jq.test.result)
+    "yq_result" = yamldecode(data.dataprocessor_yq.test.result)
+  }
 }
 ```
 

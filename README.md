@@ -1,10 +1,11 @@
 # terraform-provider-dataprocessor
 
-Terraform provider for easy and clean data processing (JQ, YQ, Go plugins...).
+Avoid ugly terraform logic and code to transform data. This Terraform provider helps you with the data processing in a clean and easy way by using tools like [JQ], [YQ] and Go plugins.
 
 ## Features
 
-- [JQ] processor.
+- [JQ] JSON processor.
+- [YQ] YAML processor.
 
 ## Use cases
 
@@ -38,3 +39,4 @@ terraform plan
 ```
 
 [JQ]: https://stedolan.github.io/jq/
+[YQ]: https://github.com/mikefarah/yq

@@ -20,14 +20,17 @@ func (p *provider) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics)
 	return tfsdk.Schema{
 		Description: `
 The Data processor provider is used to process data in a simple and clean way inside terraform code
-to avoid HCL over-engineering and use proper tools for this specific purpose like JQ or Go plugins.
+to avoid HCL over-engineering
 
-Normally this provider will be used to to convert Json processing, raw strings, filtering, create data
-structures... without messing in unreadable HCL code.
+Using proper tools like JQ, YQ or small Go plugins to process/transform data will make terraform code cleaner
+and more maintainable.
+
+Normally, this provider will be used to transform, filter or create new data structures in formats like JSON, YAML or event raw strings that
+can be used afterwards as outputs or other terraform resources, providers and modules.
 
 ## Terraform cloud
 
-The provider is portable and doesn't depend on any binary, so its compatible with terraform cloud workers.`,
+The provider is portable and doesn't depend on any binary, its compatible with terraform cloud workers out of the box.`,
 		Attributes: map[string]tfsdk.Attribute{},
 	}, nil
 }
@@ -55,5 +58,6 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 func (p *provider) GetDataSources(_ context.Context) (map[string]tfsdk.DataSourceType, diag.Diagnostics) {
 	return map[string]tfsdk.DataSourceType{
 		"dataprocessor_jq": dataSourceJQType{},
+		"dataprocessor_yq": dataSourceYQType{},
 	}, nil
 }

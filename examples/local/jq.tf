@@ -3,13 +3,13 @@ data "http" "the_office_quotes" {
 }
 
 locals {
-    jq_query_office_quotes =  "[.data[] | select(.character.firstname == $name).content]"
+  jq_expression_office_quotes =  "[.data[] | select(.character.firstname == $name).content]"
 }
 
 data "dataprocessor_jq" "michael_quotes" {
 	input_data = data.http.the_office_quotes.response_body
-    vars = {"name": "Michael"}
-	query = local.jq_query_office_quotes
+  vars = {"name": "Michael"}
+	expression = local.jq_expression_office_quotes
 }
 
 output "michael_quotes" {
@@ -18,8 +18,8 @@ output "michael_quotes" {
 
 data "dataprocessor_jq" "dwight_quotes" {
 	input_data = data.http.the_office_quotes.response_body
-    vars = {"name": "Dwight"}
-	query = local.jq_query_office_quotes
+  vars = {"name": "Dwight"}
+	expression = local.jq_expression_office_quotes
 }
 
 output "dwight_quotes" {
