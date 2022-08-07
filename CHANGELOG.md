@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [v0.3.0] - 2022-08-07
+
 ### Added
 
 - `Go plugins v1` data source.
@@ -24,6 +26,7 @@
 - `JQ` data source.
 - Released on Terraform registry.
 
-[unreleased]: https://github.com/slok/terraform-provider-dataprocessor/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/slok/terraform-provider-dataprocessor/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/slok/terraform-provider-dataprocessor/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/slok/terraform-provider-dataprocessor/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/slok/terraform-provider-dataprocessor/releases/tag/v0.1.0
