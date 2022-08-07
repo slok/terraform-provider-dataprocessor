@@ -10,13 +10,13 @@ Avoid ugly terraform logic and code to transform data. This Terraform provider h
 
 ## Processors
 
-### [JQ]
+### JQ
 
-The famous and well known processor for your JSON inputs.
+The famous and well known [JQ] processor for your JSON inputs.
 
-### [YQ]
+### YQ
 
-The famous and well known processor for your YAML inputs.
+The famous and well known [YQ] processor for your YAML inputs.
 
 ### Go plugins v1
 
@@ -29,10 +29,10 @@ The processor for everything :tada:, is the most powerful of all. You can use _a
   - The Filter function should be called:`ProcessorPluginV1`.
   - The Filter function should have this signature: `ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]string) (result string, error error)`.
 
-This is the simplest plugin that you could, a noop:
+This is the simplest plugin that you could create, a noop:
 
 ```go
-package testplugin
+package tfplugin
 
 import "context"
 
