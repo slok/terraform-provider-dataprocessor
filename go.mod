@@ -9,6 +9,7 @@ require (
 	github.com/itchyny/gojq v0.12.8
 	github.com/mikefarah/yq/v4 v4.27.2
 	github.com/stretchr/testify v1.8.0
+	github.com/traefik/yaegi v0.14.1
 	gopkg.in/op/go-logging.v1 v1.0.0-20160211212156-b2cb9fa56473
 )
 

@@ -23,6 +23,18 @@ func TestYQPorcessorProcess(t *testing.T) {
 			expResult:    "12345",
 		},
 
+		"Invalid YQ expression should fail.": {
+			yqExpression: `23y2198321yasdas??"?·"!·`,
+			inputData:    "a: 12345",
+			expErr:       true,
+		},
+
+		"Invalid input data should fail.": {
+			yqExpression: `.a`,
+			inputData:    "{",
+			expErr:       true,
+		},
+
 		"YQ expression with mutation should mutate.": {
 			yqExpression: `.spec.containers[0].env[0].value = "mutated"`,
 			inputData: `

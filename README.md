@@ -8,16 +8,49 @@
 
 Avoid ugly terraform logic and code to transform data. This Terraform provider helps you with the data processing in a clean and easy way by using tools like [JQ], [YQ] and Go plugins.
 
-## Features
+## Processors
 
-- [JQ] JSON processor.
-- [YQ] YAML processor.
+### [JQ]
+
+The famous and well known processor for your JSON inputs.
+
+### [YQ]
+
+The famous and well known processor for your YAML inputs.
+
+### Go plugins v1
+
+The processor for everything :tada:, is the most powerful of all. You can use _almost_ (e.g `unsafe` package is banned) all the Go standard library. These are the requirements to create a plugin:
+
+- Written in Go.
+- No external dependencies, only Go standard library.
+- Implemented in a single file (or string block).
+- Implement the plugin API (Check the examples to know how to do it).
+  - The Filter function should be called:`ProcessorPluginV1`.
+  - The Filter function should have this signature: `ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]string) (result string, error error)`.
+
+This is the simplest plugin that you could, a noop:
+
+```go
+package testplugin
+
+import "context"
+
+func ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]string) (string, error) {
+ return inputData, nil
+}
+```
+
+However you can do complex things like loading JSON, HTTP requests, using timers, complex regex validations, templating...
+
+Go plugins are implemented with [Yaegi], so they are portable and can run anywhere terraform can run.
 
 ## Use cases
 
 - Generate, filter, mutate... JSON data.
 - Retrieve JSON data from APIs, process and use it on other Terraform providers resources.
 - Remove ugly HCL code in favor of a more clean and powerful data processing approach.
+- Data validation (including complex cases).
 
 ## Requirements
 
@@ -46,3 +79,4 @@ terraform plan
 
 [JQ]: https://stedolan.github.io/jq/
 [YQ]: https://github.com/mikefarah/yq
+[Yaegi]: https://github.com/traefik/yaegi

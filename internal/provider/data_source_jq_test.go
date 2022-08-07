@@ -7,8 +7,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
-// TestAccDataSourceJQCorrect will check a jq executed correctly.
-func TestAccDataSourceJQCorrect(t *testing.T) {
+// TestAccDataSourceJQ will check a jq execution.
+func TestAccDataSourceJQ(t *testing.T) {
 	tests := map[string]struct {
 		config    string
 		expResult string
