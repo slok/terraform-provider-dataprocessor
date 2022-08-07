@@ -7,8 +7,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
-// TestAccDataSourceYQCorrect will check a yq executed correctly.
-func TestAccDataSourceYQCorrect(t *testing.T) {
+// TestAccDataSourceYQ will check a yq execution.
+func TestAccDataSourceYQ(t *testing.T) {
 	tests := map[string]struct {
 		config    string
 		expResult string

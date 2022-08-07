@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `Go plugins v1` data source.
+
 ## [v0.2.0] - 2022-08-06
 
 ### Added

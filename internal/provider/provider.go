@@ -57,7 +57,8 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 
 func (p *provider) GetDataSources(_ context.Context) (map[string]tfsdk.DataSourceType, diag.Diagnostics) {
 	return map[string]tfsdk.DataSourceType{
-		"dataprocessor_jq": dataSourceJQType{},
-		"dataprocessor_yq": dataSourceYQType{},
+		"dataprocessor_jq":           dataSourceJQType{},
+		"dataprocessor_yq":           dataSourceYQType{},
+		"dataprocessor_go_plugin_v1": dataSourceGoPluginV1Type{},
 	}, nil
 }
