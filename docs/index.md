@@ -61,10 +61,38 @@ values:
 }
 
 
+## Go plugin v1 example.
+data "dataprocessor_go_plugin_v1" "test" {
+  plugin = <<EOT
+package tfplugin
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]string) (string, error) {
+	prefix := vars["prefix"]
+
+	result :=  fmt.Sprintf("(%s): %s%s", time.Now().UTC(), prefix, inputData)
+
+	return result, nil
+}
+EOT
+
+  input_data = "random string nobody knows where comes from"
+  vars = {
+    "prefix" = "some_random_prefix-"
+  }
+}
+
+
 output "test" {
   value = {
-    "jq_result" = jsondecode(data.dataprocessor_jq.test.result)
-    "yq_result" = yamldecode(data.dataprocessor_yq.test.result)
+    "jq_result"           = jsondecode(data.dataprocessor_jq.test.result)
+    "yq_result"           = yamldecode(data.dataprocessor_yq.test.result)
+    "go_plugin_v1_result" = data.dataprocessor_go_plugin_v1.test.result
   }
 }
 ```
