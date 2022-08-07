@@ -20,6 +20,8 @@ The famous and well known [YQ] processor for your YAML inputs.
 
 ### Go plugins v1
 
+Check examples [here](examples/plugins).
+
 The processor for everything :tada:, is the most powerful of all. You can use _almost_ (e.g `unsafe` package is banned) all the Go standard library. These are the requirements to create a plugin:
 
 - Written in Go.
