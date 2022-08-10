@@ -8,6 +8,7 @@
 - Added `data_structure_transformation` plugin example.
 - Added `filtering` plugin example.
 - Added `simple_validation` plugin example.
+- Added `remote_plugin` plugin example.
 
 ### Fixed
 
