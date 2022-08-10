@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `check_fs` plugin example.
+- Added `data_structure_transformation` plugin example.
+- Added `filtering` plugin example.
+- Added `simple_validation` plugin example.
+
+### Fixed
+
+- Error messages.
+
 ## [v0.3.0] - 2022-08-07
 
 ### Added
