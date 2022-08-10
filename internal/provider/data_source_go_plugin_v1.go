@@ -99,7 +99,7 @@ func (d dataSourceGoPluginV1) Read(ctx context.Context, req tfsdk.ReadDataSource
 
 	result, err := plugin.Process(ctx, tfGoPluginV1.InputData.Value)
 	if err != nil {
-		resp.Diagnostics.AddError("Error executing Go plugin v1 processor", "Could process input data, unexpected error: "+err.Error())
+		resp.Diagnostics.AddError("Error executing Go plugin v1 processor", "Could not process input data, unexpected error: "+err.Error())
 		return
 	}
 	tfGoPluginV1.Result = types.String{Value: result}

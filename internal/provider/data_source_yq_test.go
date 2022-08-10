@@ -38,7 +38,7 @@ data "dataprocessor_yq" "test" {
 	input_data = "{}"
 	expression = ".|()ASd-sda?"
 }`,
-			expErr: regexp.MustCompile(`Could process input data, unexpected error: yq could not evaluate expression:`),
+			expErr: regexp.MustCompile(`Could not process input data, unexpected error: yq could not evaluate`),
 		},
 
 		"Simple YQ execution should return the input.": {

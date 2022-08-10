@@ -96,7 +96,7 @@ func (d dataSourceJQ) Read(ctx context.Context, req tfsdk.ReadDataSourceRequest,
 
 	result, err := jq.Process(ctx, tfJQ.InputData.Value)
 	if err != nil {
-		resp.Diagnostics.AddError("Error executing JQ processor", "Could process input data, unexpected error: "+err.Error())
+		resp.Diagnostics.AddError("Error executing JQ processor", "Could not process input data, unexpected error: "+err.Error())
 		return
 	}
 	tfJQ.Result = types.String{Value: result}

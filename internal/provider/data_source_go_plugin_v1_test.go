@@ -119,7 +119,7 @@ func ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]st
 }
 	EOT
 }`,
-			expErr: regexp.MustCompile("Could process input data, unexpected error: error from plugin"),
+			expErr: regexp.MustCompile("Could not process input data, unexpected error: error from plugin"),
 		},
 	}
 
