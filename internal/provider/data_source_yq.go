@@ -81,7 +81,7 @@ func (d dataSourceYQ) Read(ctx context.Context, req tfsdk.ReadDataSourceRequest,
 
 	result, err := yq.Process(ctx, tfYQ.InputData.Value)
 	if err != nil {
-		resp.Diagnostics.AddError("Error executing YQ processor", "Could process input data, unexpected error: "+err.Error())
+		resp.Diagnostics.AddError("Error executing YQ processor", "Could not process input data, unexpected error: "+err.Error())
 		return
 	}
 	tfYQ.Result = types.String{Value: result}
