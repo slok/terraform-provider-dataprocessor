@@ -9,6 +9,7 @@
 - Added `filtering` plugin example.
 - Added `simple_validation` plugin example.
 - Added `remote_plugin` plugin example.
+- Added `complexvalidation` plugin example.
 
 ### Fixed
 
