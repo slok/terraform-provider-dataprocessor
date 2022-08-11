@@ -20,7 +20,14 @@ The famous and well known [YQ] processor for your YAML inputs.
 
 ### Go plugins v1
 
-Check examples [here](examples/plugins).
+Check [examples](examples/plugins):
+
+- [FS check](examples/plugins/check_fs/): Checks files exist on disk. Shows how you can access the FS outside the plugin.
+- [Complex validation](examples/plugins/complex_validation): Validate Prometheus Rules. Shows how to create advanced logic plugins.
+- [Data structure transformation](examples/plugins/data_structure_transformation/): Transforms a data structure into another. Shows how to transform data for easier consumption by different terraform providers.
+- [Filtering](examples/plugins/filtering/): Filters a list of usernames based on a regex. Shows how to filter terraform data to avoid HCL complex logic.
+- [Remote plugin](examples/plugins/remote_plugin/): Uses a plugin that is hosted in github. Shows how plugins can be shared and create plugin repos.
+- [Simple validation](examples/plugins/simple_validation/): Validates the length of a string. Shows that simple validation plugins can be powerful (like small functions), perfect to be used as a remote plugin.
 
 The processor for everything :tada:, is the most powerful of all. You can use _almost_ (e.g `unsafe` package is banned) all the Go standard library. These are the requirements to create a plugin:
 
