@@ -13,6 +13,7 @@
 ### Fixed
 
 - Error messages.
+- `yq` processor panic/errors because of race conditions when using concurrency.
 
 ## [v0.3.0] - 2022-08-07
 
