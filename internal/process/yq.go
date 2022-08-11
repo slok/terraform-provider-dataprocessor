@@ -19,15 +19,15 @@ var (
 		yqlib.GetLogger().SetBackend(discardBackend)
 		return true
 	}()
-
-	// yq instances.
-	yqEncoder = yqlib.NewYamlEncoder(2, false, false, true)
-	yqDecoder = yqlib.NewYamlDecoder()
-	yqEval    = yqlib.NewStringEvaluator()
 )
 
 func NewYQProcessor(ctx context.Context, yqExpression string) (Processor, error) {
 	return ProcessorFunc(func(ctx context.Context, inputData string) (string, error) {
+		// Create yq instances per execution, we don't share them to avoid problems related with concurrency execution by Terraform.
+		yqEncoder := yqlib.NewYamlEncoder(2, false, false, true)
+		yqDecoder := yqlib.NewYamlDecoder()
+		yqEval := yqlib.NewStringEvaluator()
+
 		result, err := yqEval.Evaluate(yqExpression, inputData, yqEncoder, true, yqDecoder)
 		if err != nil {
 			return "", fmt.Errorf("yq could not evaluate expression: %w", err)
