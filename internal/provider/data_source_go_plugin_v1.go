@@ -27,6 +27,16 @@ The requirements for a plugin are:
 - Implement the plugin API (Check the examples to know how to do it).
   - The Filter function should be called: _ProcessorPluginV1_.
   - The Filter function should have this signature: _ProcessorPluginV1(ctx context.Context, inputData string, vars map[string]string) (result string, error error)_.
+
+Check [examples](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples):
+
+- [FS check](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/check_fs/): Checks files exist on disk. Shows how you can access the FS outside the plugin.
+- [Complex validation](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/complex_validation): Validate Prometheus Rules. Shows how to create advanced logic plugins.
+- [Data structure transformation](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/data_structure_transformation/): Transforms a data structure into another. Shows how to transform data for easier consumption by different terraform providers.
+- [Filtering](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/filtering/): Filters a list of usernames based on a regex. Shows how to filter terraform data to avoid HCL complex logic.
+- [Remote plugin](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/remote_plugin/): Uses a plugin that is hosted in github. Shows how plugins can be shared and create plugin repos.
+- [Simple validation](https://github.com/slok/terraform-provider-dataprocessor/tree/main/examples/plugins/simple_validation/): Validates the length of a string. Shows that simple validation plugins can be powerful (like small functions), perfect to be used as a remote plugin.
+
 `,
 		Attributes: map[string]tfsdk.Attribute{
 			"plugin": {
