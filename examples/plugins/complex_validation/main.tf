@@ -58,4 +58,3 @@ data "dataprocessor_go_plugin_v1" "validate_prometheus_rules" {
     check_team     = false
   }
 }
-
