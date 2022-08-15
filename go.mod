@@ -3,8 +3,8 @@ module github.com/slok/terraform-provider-dataprocessor
 go 1.19
 
 require (
-	github.com/hashicorp/terraform-plugin-framework v0.10.0
-	github.com/hashicorp/terraform-plugin-go v0.13.0
+	github.com/hashicorp/terraform-plugin-framework v0.11.1
+	github.com/hashicorp/terraform-plugin-go v0.14.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
 	github.com/itchyny/gojq v0.12.8
 	github.com/mikefarah/yq/v4 v4.27.2
