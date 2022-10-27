@@ -3,8 +3,8 @@ module github.com/slok/terraform-provider-dataprocessor
 go 1.19
 
 require (
-	github.com/hashicorp/terraform-plugin-framework v0.10.0
-	github.com/hashicorp/terraform-plugin-go v0.13.0
+	github.com/hashicorp/terraform-plugin-framework v0.15.0
+	github.com/hashicorp/terraform-plugin-go v0.14.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
 	github.com/itchyny/gojq v0.12.8
 	github.com/mikefarah/yq/v4 v4.27.2
@@ -24,7 +24,7 @@ require (
 	github.com/goccy/go-json v0.9.10 // indirect
 	github.com/goccy/go-yaml v1.9.5 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.8 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-checkpoint v0.5.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
