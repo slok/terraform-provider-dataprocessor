@@ -7,7 +7,7 @@ require (
 	github.com/hashicorp/terraform-plugin-go v0.13.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
 	github.com/itchyny/gojq v0.12.8
-	github.com/mikefarah/yq/v4 v4.27.2
+	github.com/mikefarah/yq/v4 v4.30.2
 	github.com/stretchr/testify v1.8.0
 	github.com/traefik/yaegi v0.14.1
 	gopkg.in/op/go-logging.v1 v1.0.0-20160211212156-b2cb9fa56473
@@ -16,13 +16,14 @@ require (
 require (
 	github.com/a8m/envsubst v1.3.0 // indirect
 	github.com/agext/levenshtein v1.2.2 // indirect
-	github.com/alecthomas/participle/v2 v2.0.0-beta.4 // indirect
+	github.com/alecthomas/participle/v2 v2.0.0-beta.5 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/elliotchance/orderedmap v1.4.0 // indirect
+	github.com/dimchansky/utfbom v1.1.1 // indirect
+	github.com/elliotchance/orderedmap v1.5.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/goccy/go-json v0.9.10 // indirect
-	github.com/goccy/go-yaml v1.9.5 // indirect
+	github.com/goccy/go-json v0.9.11 // indirect
+	github.com/goccy/go-yaml v1.9.6 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
